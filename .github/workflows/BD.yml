@@ -42,7 +42,7 @@ jobs:
         uses: NuGet/setup-nuget@v1
 
       - name: Restore NuGet packages
-        run: nuget restore "Vehiculo.API/Vehiculo.API.slnx"
+        run: nuget restore "Vehiculo.API/Vehiculo.API.sln"
 
       - name: Build Database Project
         run: |
