@@ -42,7 +42,7 @@ jobs:
 
       - name: Restore dependencies
         run: |
-          cd "Vehiculos"
+          cd "Vehiculos.API"
           dotnet restore "Abstracciones/Abstracciones.csproj"
           dotnet restore "DA/DA.csproj"
           dotnet restore "Flujo/Flujo.csproj"
@@ -52,7 +52,7 @@ jobs:
 
       - name: Build with dotnet (excluding BD project)
         run: |
-          cd "Vehiculos"
+          cd "Vehiculos.API"
           dotnet build "Abstracciones/Abstracciones.csproj" --configuration Release --no-restore
           dotnet build "DA/DA.csproj" --configuration Release --no-restore
           dotnet build "Flujo/Flujo.csproj" --configuration Release --no-restore
@@ -62,7 +62,7 @@ jobs:
 
       - name: Run tests (excluding BD project)
         run: |
-          cd "Vehiculos"
+          cd "Vehiculos.API"
           dotnet test "API/API.csproj" --no-restore --verbosity normal --configuration Release || echo "No tests found or test execution failed"
 
       - name: dotnet publish
