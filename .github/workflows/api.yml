@@ -7,7 +7,7 @@ name: Deploy Vehiculo API to Azure
 
 env:
   AZURE_WEBAPP_NAME: apivehiculosjorgech  # Cambia esto por el nombre de tu Azure Web App
-  AZURE_WEBAPP_PACKAGE_PATH: './Vehiculos/API'     # Ruta al proyecto API
+  AZURE_WEBAPP_PACKAGE_PATH: './Vehiculos.API/API'     # Ruta al proyecto API
   DOTNET_VERSION: '8.0'                  # Versión .NET 8.0 según tu proyecto
 
 on:
@@ -66,7 +66,7 @@ jobs:
           dotnet test "API/API.csproj" --no-restore --verbosity normal --configuration Release || echo "No tests found or test execution failed"
 
       - name: dotnet publish
-        run: dotnet publish "Vehiculos/API/API.csproj" -c Release -o ./publish --no-restore
+        run: dotnet publish "Vehiculos.API/API/API.csproj" -c Release -o ./publish --no-restore
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
