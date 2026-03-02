@@ -14,13 +14,13 @@ name: Deploy Vehiculo Database to Azure SQL
 env:
   AZURE_SQL_SERVER: jacesc701lunes.database.windows.net    # Tu servidor SQL de Azure (ejemplo: vehiculo-db-server.database.windows.net)
   AZURE_SQL_DATABASE: Vehiculos    # Nombre de tu base de datos
-  DACPAC_PATH: 'Vehiculos/BD/bin/Release/BD.dacpac'
+  DACPAC_PATH: 'Vehiculo.API/BD/bin/Release/BD.dacpac'
 
 on:
   push:
     branches: [ "main" ]
     paths:
-      - 'Vehiculos/BD/**'
+      - 'Vehiculo.API/BD/**'
   workflow_dispatch:
 
 permissions:
@@ -42,11 +42,11 @@ jobs:
         uses: NuGet/setup-nuget@v1
 
       - name: Restore NuGet packages
-        run: nuget restore "Vehiculos/Vehiculos.API.slnx"
+        run: nuget restore "Vehiculo.API/Vehiculo.API.slnx"
 
       - name: Build Database Project
         run: |
-          msbuild "Vehiculos/BD/BD.sqlproj" /p:Configuration=Release /p:Platform="Any CPU" /p:OutputPath="./bin/Release/"
+          msbuild "Vehiculo.API/BD/BD.sqlproj" /p:Configuration=Release /p:Platform="Any CPU" /p:OutputPath="./bin/Release/"
         shell: cmd
 
       - name: Verify DACPAC file exists
